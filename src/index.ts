@@ -14,10 +14,18 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: (origin, callback) => {
+        const allowedOrigins = ["http://localhost", "http://localhost:5173"];
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error("Not allowed by CORS"));
+        }
+    },
     methods: ["GET", "POST", "DELETE", "PUT"],
     credentials: true
 }));
+
 app.use(express.json());
 
 // Admin routes
