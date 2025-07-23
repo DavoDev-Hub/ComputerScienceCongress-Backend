@@ -1,0 +1,94 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model actividad {
+  id          Int      @id @default(autoincrement())
+  nombre      String
+  descripcion String
+  tipo        String
+  lugar       String? 
+  fecha       DateTime?
+  horaInicio  DateTime?
+  horaFin     DateTime?
+  cupo        Int
+
+  inscripcion inscripcion[]
+  qr_generado qr_generado[]
+  asistencia  asistencia[]
+}
+
+model asistencia {
+  id               Int      @id @default(autoincrement())
+  id_alumno        Int
+  id_actividad     Int?
+  id_conferencia   Int?
+  fecha_asistencia DateTime
+
+  alumno      alumno       @relation(fields: [id_alumno], references: [id])
+  actividad   actividad?   @relation(fields: [id_actividad], references: [id])
+  conferencia conferencia? @relation(fields: [id_conferencia], references: [id])
+}
+
+model conferencia {
+  id          Int      @id @default(autoincrement())
+  nombre      String
+  ponente     String?
+  descripcion String
+  lugar       String?
+  fecha       DateTime?
+  horaInicio  DateTime?
+  horaFin     DateTime?
+
+  qr_generado qr_generado[]
+  asistencia  asistencia[]
+}
+
+model alumno {
+  id       Int     @id @default(autoincrement())
+  nombre   String
+  correo   String @unique
+  matricula Int   @unique
+  semestre Int
+
+  administrador administrador?
+  asistencias   asistencia[]
+  inscripciones inscripcion[]
+  qr_generados  qr_generado[]
+}
+
+model administrador {
+  id_admin  Int    @id @default(autoincrement())
+  id_alumno Int    @unique
+  alumno    alumno @relation(fields: [id_alumno], references: [id])
+}
+
+model inscripcion {
+  id_inscripcion    Int      @id @default(autoincrement())
+  id_alumno         Int
+  id_actividad      Int
+  fecha_inscripcion DateTime
+
+  alumno    alumno    @relation(fields: [id_alumno], references: [id])
+  actividad actividad @relation(fields: [id_actividad], references: [id])
+}
+
+model qr_generado {
+  id_qr            Int      @id @default(autoincrement())
+  id_alumno        Int
+  id_conferencia   Int?
+  id_actividad     Int?
+  fecha_generado   DateTime
+  fecha_expiracion DateTime
+  estado           Boolean
+
+  alumno      alumno       @relation(fields: [id_alumno], references: [id])
+  conferencia conferencia? @relation(fields: [id_conferencia], references: [id])
+  actividad   actividad?   @relation(fields: [id_actividad], references: [id])
+}
