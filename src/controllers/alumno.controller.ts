@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { alumnoSchema } from "../schemas/alumno.schema";
-import { prisma } from "../lib/prisma"
+import { alumnoSchema } from "@/schemas/alumno.schema";
+import { prisma } from "@/lib/prisma"
 
 export const getAlumnos = async (req: Request, res: Response) => {
     const alumnos = await prisma.alumno.findMany()

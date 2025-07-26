@@ -1,8 +1,7 @@
 import { Request, Response } from "express";
-import { conferenciaSchema } from "../schemas/conferencia.schema";
-import { prisma } from "../lib/prisma"
+import { conferenciaSchema } from "@/schemas/conferencia.schema";
+import { prisma } from "@/lib/prisma"
 
-// Get todas las conferencias 
 
 export const getConferencia = (async (req: Request, res: Response) => {
     const conferencias = await prisma.conferencia.findMany();

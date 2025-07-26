@@ -1,14 +1,12 @@
 import { Request, Response } from "express";
-import { actividadSchema } from "../schemas/actividad.schema";
-import { prisma } from "../lib/prisma"
+import { actividadSchema } from "@/schemas/actividad.schema";
+import { prisma } from "@/lib/prisma"
 
-// Get all activities
 export const getActividades = async (req: Request, res: Response) => {
     const actividades = await prisma.actividad.findMany();
     res.json(actividades);
 };
 
-/// Get an activity by id
 export const getActividadById = async (req: Request, res: Response) => {
     const id = parseInt(req.params.id);
     const actividad = await prisma.actividad.findUnique({ where: { id } });
