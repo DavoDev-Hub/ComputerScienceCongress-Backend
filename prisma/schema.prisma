@@ -51,23 +51,25 @@ model conferencia {
 }
 
 model alumno {
-  id       Int     @id @default(autoincrement())
-  nombre   String
-  correo   String @unique
-  matricula Int   @unique
-  semestre Int
+  id           Int           @id @default(autoincrement())
+  nombre       String
+  correo       String        @unique
+  matricula    Int           @unique
+  semestre     Int
 
-  administrador administrador?
   asistencias   asistencia[]
   inscripciones inscripcion[]
   qr_generados  qr_generado[]
 }
 
 model administrador {
-  id_admin  Int    @id @default(autoincrement())
-  id_alumno Int    @unique
-  alumno    alumno @relation(fields: [id_alumno], references: [id])
+  id           Int      @id @default(autoincrement())
+  nombre       String
+  correo       String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
 }
+
 
 model inscripcion {
   id_inscripcion    Int      @id @default(autoincrement())
