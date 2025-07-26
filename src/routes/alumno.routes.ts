@@ -9,6 +9,7 @@ import {
     deleteAlumno
 } from "@/controllers/alumno.controller";
 
+
 router.get("/", getAlumnos);
 router.get("/:id", getAlumnosById);
 router.post("/", postAlumnos);

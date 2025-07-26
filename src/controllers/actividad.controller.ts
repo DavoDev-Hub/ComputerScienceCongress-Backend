@@ -62,7 +62,6 @@ export const putActividad = async (req: Request, res: Response) => {
     }
 };
 
-// Delete an activity by id
 export const deleteActividad = async (req: Request, res: Response) => {
     const id = parseInt(req.params.id);
 
