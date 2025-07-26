@@ -5,7 +5,7 @@ import {
     getAsistenciasPorAlumno,
     getRecentAttendances,
     deleteAsistencia
-} from "../controllers/asistencia.controller"
+} from "@/controllers/asistencia.controller"
 const router = Router()
 
 router.post("/", registrarAsistencia)

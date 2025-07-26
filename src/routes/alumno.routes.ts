@@ -7,7 +7,7 @@ import {
     postAlumnos,
     putAlumno,
     deleteAlumno
-} from "../controllers/alumno.controller";
+} from "@/controllers/alumno.controller";
 
 router.get("/", getAlumnos);
 router.get("/:id", getAlumnosById);

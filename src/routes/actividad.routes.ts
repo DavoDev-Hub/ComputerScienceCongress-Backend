@@ -7,7 +7,7 @@ import {
     postActividad,
     putActividad,
     deleteActividad
-} from "../controllers/actividad.controller";
+} from "@/controllers/actividad.controller";
 
 
 router.get("/", getActividades);
