@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@prisma/client": "^6.12.0",
+    "argon2": "^0.43.1",
     "cookie-parser": "~1.4.4",
     "cors": "^2.8.5",
     "date-fns": "^4.1.0",
@@ -18,6 +19,7 @@
     "express": "^4.21.2",
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
+    "jsonwebtoken": "^9.0.2",
     "morgan": "~1.9.1",
     "zod": "^3.25.71"
   },
@@ -32,4 +34,3 @@
     "typescript": "^5.8.3"
   }
 }
-
