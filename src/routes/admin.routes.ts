@@ -1,14 +1,13 @@
 import { Router } from "express";
 const router = Router()
 import {
-    registrarAdmin,
     loginAdmin,
     logoutAdmin
 } from "@/controllers/admin.controller";
 import { verificarSesion } from "@/controllers/admin.controller"
+import { loginLimiter } from "@/middlewares/authAdmin";
 
-router.post("/register", registrarAdmin)
-router.post("/login", loginAdmin)
+router.post("/login", loginLimiter, loginAdmin)
 router.get("/check", verificarSesion)
 router.post("/logout", logoutAdmin)
 
