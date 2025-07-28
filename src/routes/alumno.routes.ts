@@ -8,12 +8,12 @@ import {
     putAlumno,
     deleteAlumno
 } from "@/controllers/alumno.controller";
+import { authAdmin } from "@/middlewares/authAdmin";
 
-
-router.get("/", getAlumnos);
-router.get("/:id", getAlumnosById);
-router.post("/", postAlumnos);
-router.put("/:id", putAlumno);
-router.delete("/:id", deleteAlumno);
+router.get("/", authAdmin, getAlumnos);
+router.get("/:id", authAdmin, getAlumnosById);
+router.post("/", authAdmin, postAlumnos);
+router.put("/:id", authAdmin, putAlumno);
+router.delete("/:id", authAdmin, deleteAlumno);
 
 export default router;

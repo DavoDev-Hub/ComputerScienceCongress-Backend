@@ -8,13 +8,13 @@ import {
     putActividad,
     deleteActividad
 } from "@/controllers/actividad.controller";
+import { authAdmin } from "@/middlewares/authAdmin";
 
-
-router.get("/", getActividades);
-router.get("/:id", getActividadById);
-router.post("/", postActividad);
-router.put("/:id", putActividad);
-router.delete("/:id", deleteActividad);
+router.get("/", authAdmin, getActividades);
+router.get("/:id", authAdmin, getActividadById);
+router.post("/", authAdmin, postActividad);
+router.put("/:id", authAdmin, putActividad);
+router.delete("/:id", authAdmin, deleteActividad);
 
 export default router;
 

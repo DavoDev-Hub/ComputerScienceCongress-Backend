@@ -7,11 +7,13 @@ import {
     deleteAsistencia
 } from "@/controllers/asistencia.controller"
 const router = Router()
+import { authAdmin } from "@/middlewares/authAdmin"
 
-router.post("/", registrarAsistencia)
-router.get("/", getAllAsistencias)
+router.post("/", authAdmin, registrarAsistencia)
+router.get("/", authAdmin, getAllAsistencias)
 // router.get("/alumno/:id", getAsistenciasPorAlumno)
-router.get("/recientes", getRecentAttendances)
-router.delete("/:id", deleteAsistencia)
+router.get("/recientes", authAdmin, getRecentAttendances)
+router.delete("/:id", authAdmin, deleteAsistencia)
+
 export default router
 
