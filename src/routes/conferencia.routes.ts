@@ -9,12 +9,12 @@ import {
     putConferencia,
     deleteConferencia
 } from "@/controllers/conferencia.controller";
+import { authAdmin } from "@/middlewares/authAdmin";
 
-
-router.get("/", getConferencia);
-router.get("/:id", getConferenciaById);
-router.post("/", postConferencia);
-router.put("/:id", putConferencia);
-router.delete("/:id", deleteConferencia);
+router.get("/", authAdmin, getConferencia);
+router.get("/:id", authAdmin, getConferenciaById);
+router.post("/", authAdmin, postConferencia);
+router.put("/:id", authAdmin, putConferencia);
+router.delete("/:id", authAdmin, deleteConferencia);
 
 export default router;

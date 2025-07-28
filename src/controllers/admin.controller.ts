@@ -74,7 +74,7 @@ export const loginAdmin = async (req: Request, res: Response) => {
         res.cookie("token", token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
-            maxAge: 1000 * 60 * 60 * 8, // 8 horas
+            maxAge: 1000 * 60 * 60 * 8,
             sameSite: "lax"
         });
 
@@ -106,5 +106,22 @@ export const verificarSesion = async (req: Request, res: Response) => {
     } catch (error) {
         return res.status(401).json({ authenticated: false, error: "Token inválido o expirado" })
     }
+}
+export const logoutAdmin = (req: Request, res: Response) => {
+    req.session.destroy((err: Error | null) => {
+        if (err) {
+            console.error("Error al cerrar sesión:", err)
+            return res.status(500).json({ error: "No se pudo cerrar sesión" })
+        }
+
+        res.clearCookie("connect.sid", {
+            path: "/",
+            httpOnly: true,
+            sameSite: "lax",
+            secure: false,
+        })
+        res.status(200).json({ message: "Sesión cerrada correctamente" })
+    })
+
 }
 
