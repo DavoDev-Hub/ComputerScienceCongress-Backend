@@ -43,47 +43,51 @@ export const registrarAdmin = async (req: Request, res: Response) => {
     }
 }
 
-
 export const loginAdmin = async (req: Request, res: Response) => {
     try {
-        const parsed = adminLoginSchema.safeParse(req.body)
+        const parsed = adminLoginSchema.safeParse(req.body);
         if (!parsed.success) {
-            return res.status(400).json({ error: parsed.error.format() })
+            return res.status(400).json({ error: parsed.error.format() });
         }
 
-        const { correo, password } = parsed.data
+        const { correo, password } = parsed.data;
 
         const admin = await prisma.administrador.findUnique({
             where: { correo }
-        })
+        });
 
         if (!admin) {
-            return res.status(401).json({ error: "Credenciales inválidas" })
+            return res.status(401).json({ error: "Credenciales inválidas" });
         }
 
-        const validPassword = await verify(admin.passwordHash, password)
+        const validPassword = await verify(admin.passwordHash, password);
         if (!validPassword) {
-            return res.status(401).json({ error: "Credenciales inválidas" })
+            return res.status(401).json({ error: "Credenciales inválidas" });
         }
 
         const token = jwt.sign(
             { id: admin.id, correo: admin.correo, role: "admin" },
             process.env.JWT_SECRET!,
             { expiresIn: "8h" }
-        )
+        );
+
+        res.cookie("token", token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            maxAge: 1000 * 60 * 60 * 8, // 8 horas
+            sameSite: "lax"
+        });
 
         return res.status(200).json({
             message: "Inicio de sesión exitoso",
-            token,
             admin: {
                 id: admin.id,
                 nombre: admin.nombre,
                 correo: admin.correo
             }
-        })
+        });
     } catch (error) {
-        console.error("Error en loginAdmin:", error)
-        return res.status(500).json({ error: "Error interno del servidor." })
+        console.error("Error en loginAdmin:", error);
+        return res.status(500).json({ error: "Error interno del servidor." });
     }
-}
-
+};
