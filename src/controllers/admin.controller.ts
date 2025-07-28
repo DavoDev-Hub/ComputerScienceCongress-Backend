@@ -108,20 +108,12 @@ export const verificarSesion = async (req: Request, res: Response) => {
     }
 }
 export const logoutAdmin = (req: Request, res: Response) => {
-    req.session.destroy((err: Error | null) => {
-        if (err) {
-            console.error("Error al cerrar sesión:", err)
-            return res.status(500).json({ error: "No se pudo cerrar sesión" })
-        }
-
-        res.clearCookie("connect.sid", {
-            path: "/",
-            httpOnly: true,
-            sameSite: "lax",
-            secure: false,
-        })
-        res.status(200).json({ message: "Sesión cerrada correctamente" })
+    res.clearCookie("token", {
+        path: "/",
+        httpOnly: true,
+        sameSite: "lax",
+        secure: false,
     })
 
+    return res.status(200).json({ message: "Sesión cerrada correctamente" })
 }
-

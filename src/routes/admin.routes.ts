@@ -3,9 +3,9 @@ const router = Router()
 import {
     registrarAdmin,
     loginAdmin,
+    logoutAdmin
 } from "@/controllers/admin.controller";
 import { verificarSesion } from "@/controllers/admin.controller"
-import { logoutAdmin } from "@/controllers/admin.controller"
 
 router.post("/register", registrarAdmin)
 router.post("/login", loginAdmin)
