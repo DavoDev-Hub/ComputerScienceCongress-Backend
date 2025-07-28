@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
-
+import rateLimit from "express-rate-limit"
 
 export const authAdmin = (req: Request, res: Response, next: NextFunction) => {
     const token = req.cookies?.token;
@@ -17,5 +17,12 @@ export const authAdmin = (req: Request, res: Response, next: NextFunction) => {
         return res.status(403).json({ error: "Token inválido o expirado." });
     }
 };
+
+
+export const loginLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 10,
+    message: "Demasiados intentos, intenta más tarde",
+})
 
 
