@@ -17,3 +17,5 @@ export const authAdmin = (req: Request, res: Response, next: NextFunction) => {
         return res.status(403).json({ error: "Token inválido o expirado." });
     }
 };
+
+
