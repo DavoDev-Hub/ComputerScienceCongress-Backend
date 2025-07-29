@@ -1,7 +1,7 @@
+require('module-alias/register')
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-
 import actividadRoutes from "@/routes/actividad.routes"
 import conferenciaRoutes from "@/routes/conferencia.routes";
 import alumnoRoutes from "@/routes/alumno.routes"
