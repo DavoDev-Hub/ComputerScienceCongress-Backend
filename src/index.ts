@@ -18,7 +18,8 @@ const PORT = process.env.PORT || 3000;
 
 app.use(cors({
     origin: (origin, callback) => {
-        const allowedOrigins = ["http://localhost", "http://localhost:5173", process.env.CORS_ORIGIN];
+        const allowedOrigins = (process.env.CORS_ORIGIN || "").split(",");
+
         if (!origin || allowedOrigins.includes(origin)) {
             callback(null, true);
         } else {
@@ -28,6 +29,7 @@ app.use(cors({
     methods: ["GET", "POST", "DELETE", "PUT"],
     credentials: true
 }));
+
 
 app.use(cookieParser())
 app.use(express.json());
