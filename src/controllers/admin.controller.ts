@@ -34,8 +34,8 @@ export const loginAdmin = async (req: Request, res: Response) => {
 
         res.cookie("token", token, {
             httpOnly: true,
-            secure: process.env.NODE_ENV === "production",
-            sameSite: "lax"
+            secure: true,
+            sameSite: "none",
         });
 
         return res.status(200).json({
