@@ -69,10 +69,9 @@ export const verificarSesion = async (req: Request, res: Response) => {
 }
 export const logoutAdmin = (req: Request, res: Response) => {
     res.clearCookie("token", {
-        path: "/",
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: "strict",
+        secure: true,
+        sameSite: "none",
     })
 
     return res.status(200).json({ message: "Sesión cerrada correctamente" })
