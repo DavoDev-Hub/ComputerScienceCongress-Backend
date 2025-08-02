@@ -17,27 +17,27 @@ export const getAlumnosById = async (req: Request, res: Response) => {
     res.json(alumno)
 }
 
-export const postAlumnos = async (req: Request, res: Response) => {
-    const result = alumnoSchema.safeParse(req.body);
-
-    if (!result.success) {
-        return res.status(400).json({
-            error: "Datos invalidos",
-            detalles: result.error.format(),
-        })
-    }
-
-    try {
-        const nueva = await prisma.alumno.create({
-            data: result.data,
-        });
-
-        res.status(201).json(nueva);
-    } catch (error) {
-        console.error("Error al crear el alumno:", error);
-        res.status(500).json({ error: "Error del servidor" });
-    }
-}
+// export const postAlumnos = async (req: Request, res: Response) => {
+//     const result = alumnoSchema.safeParse(req.body);
+//
+//     if (!result.success) {
+//         return res.status(400).json({
+//             error: "Datos invalidos",
+//             detalles: result.error.format(),
+//         })
+//     }
+//
+//     try {
+//         const nueva = await prisma.alumno.create({
+//             data: result.data,
+//         });
+//
+//         res.status(201).json(nueva);
+//     } catch (error) {
+//         console.error("Error al crear el alumno:", error);
+//         res.status(500).json({ error: "Error del servidor" });
+//     }
+// }
 
 
 export const putAlumno = async (req: Request, res: Response) => {

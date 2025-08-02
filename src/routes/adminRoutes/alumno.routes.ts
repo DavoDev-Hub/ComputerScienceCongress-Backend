@@ -4,7 +4,7 @@ const router = Router();
 import {
     getAlumnos,
     getAlumnosById,
-    postAlumnos,
+    // postAlumnos,
     putAlumno,
     deleteAlumno
 } from "@/controllers/adminControllers/alumno.controller";
@@ -12,7 +12,7 @@ import { authAdmin } from "@/middlewares/authAdmin";
 
 router.get("/", authAdmin, getAlumnos);
 router.get("/:id", authAdmin, getAlumnosById);
-router.post("/", authAdmin, postAlumnos);
+// router.post("/", authAdmin, postAlumnos);
 router.put("/:id", authAdmin, putAlumno);
 router.delete("/:id", authAdmin, deleteAlumno);
 
