@@ -5,7 +5,7 @@ import {
     getAsistenciasPorAlumno,
     getRecentAttendances,
     deleteAsistencia
-} from "@/controllers/asistencia.controller"
+} from "@/controllers/adminControllers/asistencia.controller"
 const router = Router()
 import { authAdmin } from "@/middlewares/authAdmin"
 
@@ -16,4 +16,3 @@ router.get("/recientes", authAdmin, getRecentAttendances)
 router.delete("/:id", authAdmin, deleteAsistencia)
 
 export default router
-

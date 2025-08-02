@@ -7,7 +7,7 @@ import {
     postAlumnos,
     putAlumno,
     deleteAlumno
-} from "@/controllers/alumno.controller";
+} from "@/controllers/adminControllers/alumno.controller";
 import { authAdmin } from "@/middlewares/authAdmin";
 
 router.get("/", authAdmin, getAlumnos);

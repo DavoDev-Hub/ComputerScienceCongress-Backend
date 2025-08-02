@@ -8,7 +8,7 @@ import {
     postConferencia,
     putConferencia,
     deleteConferencia
-} from "@/controllers/conferencia.controller";
+} from "@/controllers/adminControllers/conferencia.controller";
 import { authAdmin } from "@/middlewares/authAdmin";
 
 router.get("/", authAdmin, getConferencia);

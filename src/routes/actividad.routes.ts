@@ -6,7 +6,7 @@ import {
     postActividad,
     putActividad,
     deleteActividad
-} from "@/controllers/actividad.controller";
+} from "@/controllers/adminControllers/actividad.controller";
 import { authAdmin } from "@/middlewares/authAdmin";
 
 router.get("/", authAdmin, getActividades);
