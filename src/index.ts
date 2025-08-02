@@ -4,14 +4,15 @@ import cors from "cors";
 import dotenv from "dotenv";
 
 // AdminRoutes
+import adminRoutes from "@/routes/adminRoutes/admin.routes"
 import actividadRoutes from "@/routes/adminRoutes/actividad.routes"
 import conferenciaRoutes from "@/routes/adminRoutes/conferencia.routes";
 import alumnoRoutes from "@/routes/adminRoutes/alumno.routes"
 import asistenciasRoutes from "@/routes/adminRoutes/asistencia.routes";
 import dashboardRoutes from "@/routes/adminRoutes/dashboard.routes"
-import adminRoutes from "@/routes/adminRoutes/admin.routes"
 
 // UserRoutes
+import userRoutes from "@/routes/userRoutes/user.routes"
 
 import cookieParser from "cookie-parser"
 dotenv.config();
@@ -40,14 +41,15 @@ app.use(cookieParser())
 app.use(express.json());
 
 // Admin routes
+app.use("/admin/auth", adminRoutes);
 app.use("/admin/dashboard", dashboardRoutes);
 app.use("/admin/actividades", actividadRoutes);
 app.use("/admin/conferencias", conferenciaRoutes);
 app.use("/admin/alumnos", alumnoRoutes);
 app.use("/admin/asistencias", asistenciasRoutes)
-app.use("/admin/auth", adminRoutes)
 
 // User routes
+app.use("/user/auth", userRoutes);
 
 
 app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
