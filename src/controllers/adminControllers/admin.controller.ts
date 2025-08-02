@@ -1,7 +1,7 @@
 import { Request, Response } from "express"
 import { prisma } from "@/lib/prisma"
 import { verify } from "argon2"
-import { adminLoginSchema } from "@/schemas/admin.schema"
+import { adminLoginSchema } from "@/schemas/adminSchemas/admin.schema"
 import jwt from "jsonwebtoken"
 
 export const loginAdmin = async (req: Request, res: Response) => {

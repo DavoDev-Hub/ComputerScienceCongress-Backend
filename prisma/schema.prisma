@@ -54,6 +54,7 @@ model alumno {
   id           Int           @id @default(autoincrement())
   nombre       String
   correo       String        @unique
+  passwordHash String
   matricula    Int           @unique
   semestre     Int
 

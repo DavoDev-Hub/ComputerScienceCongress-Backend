@@ -4,12 +4,12 @@ import cors from "cors";
 import dotenv from "dotenv";
 
 // AdminRoutes
-import actividadRoutes from "@/routes/actividad.routes"
-import conferenciaRoutes from "@/routes/conferencia.routes";
-import alumnoRoutes from "@/routes/alumno.routes"
-import asistenciasRoutes from "@/routes/asistencia.routes";
-import dashboardRoutes from "@/routes/dashboard.routes"
-import adminRoutes from "@/routes/admin.routes"
+import actividadRoutes from "@/routes/adminRoutes/actividad.routes"
+import conferenciaRoutes from "@/routes/adminRoutes/conferencia.routes";
+import alumnoRoutes from "@/routes/adminRoutes/alumno.routes"
+import asistenciasRoutes from "@/routes/adminRoutes/asistencia.routes";
+import dashboardRoutes from "@/routes/adminRoutes/dashboard.routes"
+import adminRoutes from "@/routes/adminRoutes/admin.routes"
 
 // UserRoutes
 

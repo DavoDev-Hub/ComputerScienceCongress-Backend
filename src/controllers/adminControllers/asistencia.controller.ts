@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { asistenciaSchema } from "@/schemas/asistencia.schema";
+import { asistenciaSchema } from "@/schemas/adminSchemas/asistencia.schema";
 import { prisma } from "@/lib/prisma"
 
 export const registrarAsistencia = async (req: Request, res: Response) => {

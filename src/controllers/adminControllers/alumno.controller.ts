@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { alumnoSchema } from "@/schemas/alumno.schema";
+import { alumnoSchema } from "@/schemas/adminSchemas/alumno.schema";
 import { prisma } from "@/lib/prisma"
 
 export const getAlumnos = async (req: Request, res: Response) => {

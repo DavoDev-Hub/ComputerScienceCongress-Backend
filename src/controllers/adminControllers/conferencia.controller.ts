@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { conferenciaSchema } from "@/schemas/conferencia.schema";
+import { conferenciaSchema } from "@/schemas/adminSchemas/conferencia.schema";
 import { prisma } from "@/lib/prisma"
 
 

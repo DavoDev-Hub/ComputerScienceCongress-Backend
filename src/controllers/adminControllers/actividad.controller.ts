@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { actividadSchema } from "@/schemas/actividad.schema";
+import { actividadSchema } from "@/schemas/adminSchemas/actividad.schema";
 import { prisma } from "@/lib/prisma"
 
 export const getActividades = async (req: Request, res: Response) => {
