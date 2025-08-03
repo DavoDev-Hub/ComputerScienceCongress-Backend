@@ -51,18 +51,19 @@ model conferencia {
 }
 
 model alumno {
-  id           Int           @id @default(autoincrement())
-  nombre       String
-  correo       String        @unique
-  passwordHash String
-  matricula    Int           @unique
-  semestre     Int
+  id                Int           @id @default(autoincrement())
+  nombre            String
+  correo            String        @unique
+  matricula         Int           @unique
+  semestre          Int
+  passwordHash      String
+  emailVerified     Boolean       @default(false)
+  verificationCode  String?
 
-  asistencias   asistencia[]
-  inscripciones inscripcion[]
-  qr_generados  qr_generado[]
+  asistencias       asistencia[]
+  inscripciones     inscripcion[]
+  qr_generados      qr_generado[]
 }
-
 model administrador {
   id           Int      @id @default(autoincrement())
   nombre       String
