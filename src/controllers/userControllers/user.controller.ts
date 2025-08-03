@@ -1,7 +1,7 @@
 import { Request, Response } from "express"
-import { alumnoLoginSchema } from "@/schemas/userSchemas/user.schema"
+import { alumnoLoginSchema, alumnoRegisterSchema } from "@/schemas/userSchemas/user.schema"
 import { prisma } from "@/lib/prisma"
-import { verify } from "argon2"
+import { verify, hash } from "argon2"
 import jwt from "jsonwebtoken"
 
 export const loginAlumno = async (req: Request, res: Response) => {
@@ -36,8 +36,8 @@ export const loginAlumno = async (req: Request, res: Response) => {
 
         res.cookie("token", token, {
             httpOnly: true,
-            secure: process.env.NODE_ENV === "production",
-            sameSite: "lax"
+            secure: true,
+            sameSite: "none"
         })
 
         return res.status(200).json({
@@ -56,3 +56,45 @@ export const loginAlumno = async (req: Request, res: Response) => {
     }
 }
 
+export const registerAlumno = async (req: Request, res: Response) => {
+    const parsed = alumnoRegisterSchema.safeParse(req.body)
+
+    if (!parsed.success) {
+        return res.status(400).json({ error: parsed.error.format() })
+    }
+
+    const { nombre, correo, matricula, semestre, password } = parsed.data
+
+    try {
+        const existe = await prisma.alumno.findUnique({ where: { correo } })
+        if (existe) {
+            return res.status(400).json({ error: "Ya existe un usuario con este correo" })
+        }
+
+        const passwordHash = await hash(password)
+
+        const nuevoAlumno = await prisma.alumno.create({
+            data: {
+                nombre,
+                correo,
+                matricula,
+                semestre,
+                passwordHash
+            }
+        })
+
+        return res.status(201).json({
+            message: "Registro exitoso",
+            alumno: {
+                id: nuevoAlumno.id,
+                nombre: nuevoAlumno.nombre,
+                correo: nuevoAlumno.correo,
+                matricula: nuevoAlumno.matricula,
+                semestre: nuevoAlumno.semestre
+            }
+        })
+    } catch (err) {
+        console.error("Error en registerAlumno:", err)
+        return res.status(500).json({ error: "Error interno del servidor" })
+    }
+}
