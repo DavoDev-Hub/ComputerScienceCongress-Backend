@@ -96,3 +96,12 @@ model qr_generado {
   conferencia conferencia? @relation(fields: [id_conferencia], references: [id])
   actividad   actividad?   @relation(fields: [id_actividad], references: [id])
 }
+
+model VerificacionCorreo {
+  id              Int      @id @default(autoincrement())
+  correo          String   @unique
+  codigo          String
+  expiracion      DateTime
+  creadoEn        DateTime @default(now())
+}
+

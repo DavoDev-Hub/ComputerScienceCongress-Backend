@@ -14,5 +14,6 @@ export const alumnoRegisterSchema = z.object({
     matricula: z.number().int().positive("La matrícula debe ser positiva"),
     semestre: z.number().int().min(1).max(12),
     password: z.string().min(6, "La contraseña debe tener al menos 6 caracteres"),
+    codigoVerificacion: z.string().length(6)
 })
 
