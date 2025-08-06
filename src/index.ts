@@ -6,14 +6,15 @@ dotenv.config();
 
 // AdminRoutes
 import adminRoutes from "@/routes/adminRoutes/admin.routes";
-import actividadRoutes from "@/routes/adminRoutes/actividad.routes";
-import conferenciaRoutes from "@/routes/adminRoutes/conferencia.routes";
-import alumnoRoutes from "@/routes/adminRoutes/alumno.routes";
-import asistenciasRoutes from "@/routes/adminRoutes/asistencia.routes";
-import dashboardRoutes from "@/routes/adminRoutes/dashboard.routes";
+import adminActividadRoutes from "@/routes/adminRoutes/actividad.routes";
+import adminConferenciaRoutes from "@/routes/adminRoutes/conferencia.routes";
+import adminAlumnoRoutes from "@/routes/adminRoutes/alumno.routes";
+import adminAsistenciasRoutes from "@/routes/adminRoutes/asistencia.routes";
+import adminDashboardRoutes from "@/routes/adminRoutes/dashboard.routes";
 
 // UserRoutes
 import userRoutes from "@/routes/userRoutes/user.routes";
+import userDashboardRoutes from "@/routes/userRoutes/dashboard.routes";
 
 import cookieParser from "cookie-parser";
 
@@ -43,14 +44,15 @@ app.use(express.json());
 
 // Admin routes
 app.use("/admin/auth", adminRoutes);
-app.use("/admin/dashboard", dashboardRoutes);
-app.use("/admin/actividades", actividadRoutes);
-app.use("/admin/conferencias", conferenciaRoutes);
-app.use("/admin/alumnos", alumnoRoutes);
-app.use("/admin/asistencias", asistenciasRoutes);
+app.use("/admin/dashboard", adminDashboardRoutes);
+app.use("/admin/actividades", adminActividadRoutes);
+app.use("/admin/conferencias", adminConferenciaRoutes);
+app.use("/admin/alumnos", adminAlumnoRoutes);
+app.use("/admin/asistencias", adminAsistenciasRoutes);
 
 // User routes
 app.use("/user/auth", userRoutes);
+app.use("/user/dashboard", userDashboardRoutes);
 
 app.use(
   (

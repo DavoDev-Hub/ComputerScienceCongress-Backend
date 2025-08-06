@@ -10,5 +10,4 @@ import {
 router.post("/login", loginAlumno);
 router.post("/register", registerAlumno);
 // router.post("/verificacion", solicitarCodigoVerificacion);
-
 export default router;

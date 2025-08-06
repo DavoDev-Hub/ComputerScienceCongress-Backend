@@ -1,13 +1,13 @@
-import { JwtPayload } from "jsonwebtoken"
-import session from "express-session"
+import { JwtPayload } from "jsonwebtoken";
 
 declare global {
-    namespace Express {
-        interface Request {
-            user?: string | JwtPayload
-            session: session.Session & Partial<session.SessionData>
-        }
+  namespace Express {
+    interface Request {
+      user?: {
+        id: number;
+        correo: string;
+        role: "alumno" | "admin";
+      } & JwtPayload;
     }
+  }
 }
-
-export { };
