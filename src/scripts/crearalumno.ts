@@ -2,12 +2,12 @@ import { prisma } from "@/lib/prisma";
 import { hash } from "argon2";
 
 async function main() {
-  const passwordHash = await hash("Juanpa13");
+  const passwordHash = await hash("prueba123");
 
   const admin = await prisma.administrador.create({
     data: {
       nombre: "Juan Pablo",
-      correo: "al280622@edu.uaa.mx",
+      correo: "al280621@edu.uaa.mx",
       passwordHash,
     },
   });
