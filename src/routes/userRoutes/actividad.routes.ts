@@ -17,7 +17,7 @@ router.get("/inscripciones", authUser, getMyEnrollments);
 
 // Inscribirse
 router.post(
-  "/activities/inscribirse",
+  "/inscribirse",
   authUser,
   validate(enrollActivitySchema),
   enrollActivity,
