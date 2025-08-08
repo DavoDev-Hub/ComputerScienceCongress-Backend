@@ -15,7 +15,7 @@ import adminDashboardRoutes from "@/routes/adminRoutes/dashboard.routes";
 // UserRoutes
 import userRoutes from "@/routes/userRoutes/user.routes";
 import userDashboardRoutes from "@/routes/userRoutes/dashboard.routes";
-import userActividadesRoutes from "@/routes/userRoutes/dashboard.routes";
+import userActividadesRoutes from "@/routes/userRoutes/actividad.routes";
 
 import cookieParser from "cookie-parser";
 
