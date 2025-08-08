@@ -15,6 +15,7 @@ import adminDashboardRoutes from "@/routes/adminRoutes/dashboard.routes";
 // UserRoutes
 import userRoutes from "@/routes/userRoutes/user.routes";
 import userDashboardRoutes from "@/routes/userRoutes/dashboard.routes";
+import userActividadesRoutes from "@/routes/userRoutes/dashboard.routes";
 
 import cookieParser from "cookie-parser";
 
@@ -53,6 +54,7 @@ app.use("/admin/asistencias", adminAsistenciasRoutes);
 // User routes
 app.use("/user/auth", userRoutes);
 app.use("/user/dashboard", userDashboardRoutes);
+app.use("/user/actividades, userActividadesRoutes");
 
 app.use(
   (

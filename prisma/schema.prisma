@@ -72,7 +72,6 @@ model administrador {
   createdAt    DateTime @default(now())
 }
 
-
 model inscripcion {
   id_inscripcion    Int      @id @default(autoincrement())
   id_alumno         Int
@@ -81,6 +80,8 @@ model inscripcion {
 
   alumno    alumno    @relation(fields: [id_alumno], references: [id])
   actividad actividad @relation(fields: [id_actividad], references: [id])
+
+  @@unique([id_alumno, id_actividad])
 }
 
 model qr_generado {
