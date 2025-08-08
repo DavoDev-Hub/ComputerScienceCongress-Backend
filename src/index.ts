@@ -16,6 +16,7 @@ import adminDashboardRoutes from "@/routes/adminRoutes/dashboard.routes";
 import userRoutes from "@/routes/userRoutes/user.routes";
 import userDashboardRoutes from "@/routes/userRoutes/dashboard.routes";
 import userActividadesRoutes from "@/routes/userRoutes/actividad.routes";
+import userConferenciasRoutes from "@/routes/userRoutes/conferencias.routes";
 
 import cookieParser from "cookie-parser";
 
@@ -55,6 +56,7 @@ app.use("/admin/asistencias", adminAsistenciasRoutes);
 app.use("/user/auth", userRoutes);
 app.use("/user/dashboard", userDashboardRoutes);
 app.use("/user/actividades", userActividadesRoutes);
+app.use("/user/conferencias", userConferenciasRoutes);
 
 app.use(
   (

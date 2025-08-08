@@ -13,18 +13,32 @@ const overlap = (
   return aStart < bEnd && bStart < aEnd;
 };
 
-// GET /user/activities?tipo=academic|recreational
 export const listActivities = async (req: Request, res: Response) => {
-  const tipo = (req.query.tipo as string | undefined)?.toLowerCase();
-  if (tipo && !["academic", "recreational"].includes(tipo)) {
-    return res.status(400).json({ error: "tipo inválido" });
-  }
   try {
+    const raw = (req.query.tipo as string | undefined)?.toLowerCase();
+
+    // Normalizamos SOLO español (puedes añadir más alias si quieres)
+    const map: Record<string, "academico" | "recreativo"> = {
+      academico: "academico",
+      académico: "academico", // por si llega con acento
+      recreativo: "recreativo",
+    };
+
+    let where: { tipo?: "academico" | "recreativo" } = {};
+    if (raw) {
+      const normalized = map[raw];
+      if (!normalized) {
+        return res.status(400).json({ error: "tipo inválido" });
+      }
+      where.tipo = normalized;
+    }
+
     const actividades = await prisma.actividad.findMany({
-      where: tipo ? { tipo } : undefined,
+      where,
       orderBy: [{ fecha: "asc" }, { horaInicio: "asc" }],
     });
 
+    // Adjunta conteo de inscritos
     const withCounts = await Promise.all(
       actividades.map(async (a) => {
         const inscritos = await prisma.inscripcion.count({
