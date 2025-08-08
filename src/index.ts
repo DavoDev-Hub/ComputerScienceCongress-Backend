@@ -54,7 +54,7 @@ app.use("/admin/asistencias", adminAsistenciasRoutes);
 // User routes
 app.use("/user/auth", userRoutes);
 app.use("/user/dashboard", userDashboardRoutes);
-app.use("/user/actividade", userActividadesRoutes);
+app.use("/user/actividades", userActividadesRoutes);
 
 app.use(
   (
