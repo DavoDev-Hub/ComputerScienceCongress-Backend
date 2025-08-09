@@ -109,3 +109,17 @@ export const registerAlumno = async (req: Request, res: Response) => {
     return res.status(500).json({ error: "Error interno del servidor" });
   }
 };
+
+export const logoutUser = async (req: Request, res: Response) => {
+  try {
+    res.clearCookie("token_alumno", {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
+    });
+    return res.status(200).json({ message: "Logout exitoso" });
+  } catch (error) {
+    console.error("Error al cerrar sesión:", error);
+    return res.status(500).json({ error: "Error interno del servidor" });
+  }
+};

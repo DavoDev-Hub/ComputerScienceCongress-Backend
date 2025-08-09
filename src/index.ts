@@ -18,6 +18,7 @@ import userDashboardRoutes from "@/routes/userRoutes/dashboard.routes";
 import userActividadesRoutes from "@/routes/userRoutes/actividad.routes";
 import userConferenciasRoutes from "@/routes/userRoutes/conferencias.routes";
 import userQrRoutes from "@/routes/userRoutes/qr.routes";
+import userAsistenciaRoutes from "@/routes/userRoutes/asistencia.routes";
 
 import cookieParser from "cookie-parser";
 
@@ -59,6 +60,7 @@ app.use("/user/dashboard", userDashboardRoutes);
 app.use("/user/actividades", userActividadesRoutes);
 app.use("/user/conferencias", userConferenciasRoutes);
 app.use("/user/qr", userQrRoutes);
+app.use("/user/asistencias", userAsistenciaRoutes);
 app.use(
   (
     err: any,
